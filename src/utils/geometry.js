@@ -12,6 +12,7 @@ const stripFirst = path => {
 };
 
 export const fusePaths = (path1, path2) => {
+  if (!path1 || !path2) return null;
   const path2WithoutM = stripFirst(path2);
   const fused = `${path1}${path2WithoutM}Z`;
   return fused;

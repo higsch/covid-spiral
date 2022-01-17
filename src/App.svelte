@@ -1,31 +1,57 @@
 <script>
-  import { countryData } from './stores/data';
+  import { continentData, wealthStatusData, countryData } from './stores/data';
 
-  import CountrySelector from './components/CountrySelector.svelte';
-  import Chart from './components/Chart.svelte';
+  import Grid from './components/Grid.svelte';
+  import Cell from './components/Cell.svelte';
 </script>
 
-<div class="wrapper">
-  <div class="selector-wrapper">
-    <CountrySelector />
-  </div>
-  <div class="spiral-wrapper">
-    <Chart
-      data={$countryData}
-    />
-  </div>
+<div
+  class="wrapper"
+>
+  <section
+    class="continents"
+  >
+    <Grid let:maxCellWidth>
+      {#each $continentData as { location, data }}
+        <Cell
+          data={data}
+          title={location}
+          maxWidth={maxCellWidth}
+        />
+      {/each}
+    </Grid>
+  </section>
+  <section
+    class="wealth-status"
+  >
+    <Grid let:maxCellWidth>
+      {#each $wealthStatusData as { location, data }}
+        <Cell
+          data={data}
+          title={location}
+          maxWidth={maxCellWidth}
+        />
+      {/each}
+    </Grid>
+  </section>
+  <!-- <section
+    class="countries"
+  >
+    <Grid let:maxCellWidth>
+      {#each $countryData as { location, data }}
+        <Cell
+          data={data}
+          title={location}
+          maxWidth={maxCellWidth}
+        />
+      {/each}
+    </Grid>
+  </section> -->
 </div>
 
 <style>
   .wrapper {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    height: 100%;
-  }
-
-  .spiral-wrapper {
-    flex: 1;
-    overflow: hidden;
+    padding-top: 1.2rem;
   }
 </style>

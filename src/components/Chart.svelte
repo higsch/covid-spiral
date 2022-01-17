@@ -1,7 +1,7 @@
 <script>
   import {
     scaleLinear,
-    extent,
+    scalePow,
     min,
     max,
     line,
@@ -14,6 +14,7 @@
   import GradientPath from './GradientPath.svelte';
 
   export let data = [];
+  export let maxCases;
 
   const padding = 50;
 
@@ -31,11 +32,7 @@
   let height = 0;
 
   $: minDim = min([width, height]);
-  $: maxCases = max(data, d => d.incidence);
-
-  $: radiusScale = scaleLinear()
-    .domain([0, max(data, d => d.cumDay)])
-    .range([minDim / 100, minDim / 2 - padding]);
+  $: maxCases = maxCases || max(data, d => d.incidence);
 
   $: radiusOffsetScaleCases = scaleLinear()
     .domain([0, maxCases])
@@ -44,6 +41,10 @@
   $: radiusOffsetScaleDeaths = scaleLinear()
     .domain([0, maxCases])
     .range([0, minDim / 10]);
+
+  $: radiusScale = scalePow()
+    .domain([0, max(data, d => d.cumDay)])
+    .range([minDim / 100, minDim / 2 - padding]);
 
   $: angleScale = scaleLinear()
     .domain([0, max(data, d => d.dayOfYear) + 1])
@@ -82,15 +83,15 @@
   $: renderedDataCases = getRenderedData(data, 'cumDay', 'incidence', 'dayOfYear', radiusOffsetScaleCases);
 
   $: combinedPathCases = fusePaths(
-    offsetSpiral1Generator(renderedDataCases) || 'M0 0',
-    offsetSpiral2Generator([...renderedDataCases].reverse()) || 'M0 0'
+    offsetSpiral1Generator(renderedDataCases),
+    offsetSpiral2Generator([...renderedDataCases].reverse())
   );
 
   $: renderedDataDeaths = getRenderedData(data, 'cumDay', 'deaths', 'dayOfYear', radiusOffsetScaleDeaths);
 
   $: combinedPathDeaths = fusePaths(
-    offsetSpiral1Generator(renderedDataDeaths) || 'M0 0',
-    offsetSpiral2Generator([...renderedDataDeaths].reverse()) || 'M0 0'
+    offsetSpiral1Generator(renderedDataDeaths),
+    offsetSpiral2Generator([...renderedDataDeaths].reverse())
   );
 </script>
 
