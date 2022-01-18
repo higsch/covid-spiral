@@ -3,6 +3,8 @@
 
   import Grid from './components/Grid.svelte';
   import Cell from './components/Cell.svelte';
+
+  let maxCases = null;
 </script>
 
 <div
@@ -17,6 +19,7 @@
           data={data}
           title={location}
           maxWidth={maxCellWidth}
+          maxCases={maxCases}
         />
       {/each}
     </Grid>
@@ -30,6 +33,7 @@
           data={data}
           title={location}
           maxWidth={maxCellWidth}
+          maxCases={maxCases}
         />
       {/each}
     </Grid>
@@ -43,6 +47,7 @@
           data={data}
           title={location}
           maxWidth={maxCellWidth}
+          maxCases={maxCases}
         />
       {/each}
     </Grid>
