@@ -1,6 +1,6 @@
 # covid-spiral
 
-Small study to see how one can code a spiral-shaped data visualization of covid-19 cases and deats.
+Small study to see how one can code a spiral-shaped data visualization of covid-19 cases and deaths.
 
 Inspired by the [New York Times](https://www.nytimes.com/2022/01/06/opinion/omicron-covid-us.html).
 
