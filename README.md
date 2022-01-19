@@ -10,7 +10,7 @@ Spiral: Time (top: January, then clockwise through the months)
 
 Colored area: 7-day average of new cases per one million population
 
-Black area: 7-day average of new cases per one million population **x 10**
+Black area: 7-day average of new deaths per one million population **x 10**
 
 Data source: Our world in data
 
