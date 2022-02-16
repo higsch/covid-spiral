@@ -38,7 +38,7 @@
       {/each}
     </Grid>
   </section>
-  <!-- <section
+  <section
     class="countries"
   >
     <Grid let:maxCellWidth>
@@ -51,7 +51,7 @@
         />
       {/each}
     </Grid>
-  </section> -->
+  </section>
 </div>
 
 <style>

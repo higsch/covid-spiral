@@ -75,7 +75,7 @@ export const continentData = derived(objData, $objData => {
 });
 
 export const countryData = derived(objData, $objData => {
-  return $objData.filter(d => !continents.includes(d.location));
+  return $objData.filter(d => !continents.includes(d.location)).filter(d => d.location === 'Germany');
 });
 
 export const wealthStatusData = derived(objData, $objData => {
